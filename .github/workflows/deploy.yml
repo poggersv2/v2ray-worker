@@ -11,12 +11,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: "latest"
-        cache: "npm"
+        node-version: '18'  # or specify your Node.js version
+        cache: 'npm'
 
     - name: Install Wrangler
       run: npm install -g @cloudflare/wrangler
