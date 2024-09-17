@@ -18,8 +18,17 @@ jobs:
         node-version: '18'  # or specify your Node.js version
         cache: 'npm'
 
-    - name: Install Wrangler
-      run: npm install -g @cloudflare/wrangler
+    - name: Install Latest Wrangler
+      run: |
+        npm uninstall -g @cloudflare/wrangler || true
+        npm install -g wrangler
+
+    - name: Check Wrangler Installation
+      run: wrangler --version
+
+    - name: Replace KV Namespace Placeholder
+      run: |
+        sed -i "s/KV_NAME/${{ secrets.KV_NAME }}/g" wrangler.toml
 
     - name: Build
       run: npx wrangler build
@@ -31,5 +40,4 @@ jobs:
 
     - name: Deploy
       run: |
-        sed -i "s/KV_NAME/${{ secrets.KV_NAME }}/g" wrangler.toml
         wrangler deploy --api-token ${{ secrets.CF_API_TOKEN }} --account-id ${{ secrets.CF_ACCOUNT_ID }}
