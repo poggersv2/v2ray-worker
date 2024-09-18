@@ -1,0 +1,15 @@
+proxies:
+  - name: "vless.theogpogg.workers.dev"
+    type: vless
+    server: "vless.theogpogg.workers.dev"
+    port: 443
+    uuid: "a28b1c8e-6002-4395-93b6-27f18b260a35"
+    network: ws
+    tls: true
+    sni: "vless.theogpogg.workers.dev"
+    ws-opts:
+      path: "/?ed=2048"
+      headers:
+        host: "vless.theogpogg.workers.dev"
+
+# Add additional configuration options as needed
